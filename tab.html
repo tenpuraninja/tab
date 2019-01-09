@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>tab</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <style>
+  .tab {
+  	width: 100%;
+  	margin: 0 0 -2px;
+  	padding: 0;
+  	display: table;
+  	table-layout: fixed;
+  }
+  .tab li {
+  	width: 33%;
+  	margin: 0;
+  	padding: 5px 10px 0;
+  	cursor: pointer;
+  	display: table-cell;
+  	vertical-align: middle;
+  	text-align: center;
+  	background: #666;
+  	border: 1px solid #333;
+  	box-sizing: border-box;
+  }
+  .tab li.current {
+  	width: 34%;
+  	background: #fff;
+  	border-bottom: none;
+  }
+  .content {
+  	margin: 0;
+  	padding: 16px;
+  	border: 1px solid #333;
+  	border-top: none;
+  	text-align: center;
+  }
+  .contents .content {
+  	display: none;
+  }
+  .contents .content:nth-child(1) {
+  	display: block;
+  }
+  </style>
+  <script>
+  $(function() {
+  $('.tab li:nth-child(1)').addClass('current');
+  $('.tab li').click(function() {
+    var num = $(this).parent().children('li').index(this);
+    $(this).parent('.tab').each(function(){
+      $('>li',this).removeClass('current').eq(num).addClass('current');
+    });
+    $(this).parent().next().children('.content').hide().eq(num).show();
+  }).first().click();
+  });
+  </script>
+</head>
+<body>
+  <section>
+	<h2>tabBox1</h2>
+	<ul class="tab">
+		<li>A</li>
+		<li>B</li>
+		<li>C</li>
+	</ul>
+	<div class="contents">
+		<div class="content">
+			A
+		</div>
+		<div class="content">
+			B
+		</div>
+		<div class="content">
+			C
+		</div>
+	 </div>
+</section>
+
+<section>
+	<h2>tabBox2</h2>
+	<ul class="tab">
+		<li>D</li>
+		<li>E</li>
+		<li>F</li>
+		<li>G</li>
+	</ul>
+	<div class="contents">
+		<div class="content">
+			D
+		</div>
+		<div class="content">
+			E
+		</div>
+		<div class="content">
+			F
+		</div>
+		<div class="content">
+			G
+		</div>
+	</div>
+</section>
+
+</body>
+</html>
